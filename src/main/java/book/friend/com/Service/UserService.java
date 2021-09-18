@@ -3,6 +3,7 @@ package book.friend.com.Service;
 import book.friend.com.Model.User;
 import book.friend.com.Repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,6 +28,11 @@ public class UserService {
         }
         User saveUser = userRepository.save(user);
         return saveUser;
+    }
+
+    public User FindUserById(String id){
+        User user = userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found by this id"));
+        return user;
     }
 
 
